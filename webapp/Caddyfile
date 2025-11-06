@@ -1,0 +1,10 @@
+demo.hnolan.com {
+    reverse_proxy webapp:8000
+
+    encode gzip
+
+    log {
+        output stdout
+        format console
+    }
+}

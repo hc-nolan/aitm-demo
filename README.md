@@ -17,20 +17,15 @@ sudo ./start_web.sh
 ## Attacker VM
 
 - Deploy a local Debian-based Linux VM (e.g. Kali, Ubuntu)
+- Ensure git is installed: `sudo apt install -y git`
+- Clone the repository and `cd` into it:
+```shell
+git clone https://github.com/hc-nolan/aitm-demo
+cd aitm-demo
+```
+- Run `sudo ./start_evilginx.sh`
 
-- Ensure the following are installed:
-  - Git
-  - [Docker Engine](https://docs.docker.com/engine/install/)
-  - Golang
-    - For Debian-based Linux distros (Kali, Ubuntu): `sudo apt install -y golang-go`
-- Clone the repository: `git clone https://github.com/hc-nolan/aitm-demo`
-- Enter the project directory: `cd aitm-demo`
-- Initialize the evilginx submodule: `git submodule update --init`
-- Run `./start.sh`
-
-- Set a DNS record for `demo.hnolan.ca`, make sure HTTPS is enabled
-
-- When done, edit `/etc/hosts` and remove the line: `127.0.0.1 aitm.demo`
+- When done, edit `/etc/hosts` and remove the line: `127.0.0.1 <phishing domain>`
 
 
 # Attack Instructions

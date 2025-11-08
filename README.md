@@ -23,7 +23,7 @@ The web server hosts the website we are stealing the session and credentials fro
 sudo apt update && sudo apt install git curl
 curl https://get.docker.com | sh
 git clone https://github.com/hc-nolan/aitm-demo
-cd aitm-demo/web
+cd aitm-demo/webapp
 ```
 
 Open the file `Caddyfile` in a text editor and change the first line to match your domain. Then, start the application:
@@ -34,6 +34,7 @@ sudo docker compose up -d
 
 ## Attacker VM
 
+- Make sure you can access the web application. Create a user account and setup MFA.
 - Ensure git, curl, and Golang are installed: `sudo apt install -y git curl golang-go`
 - Ensure Docker is installed: `curl https://get.docker.com | sh`
 - Run the following commands:
@@ -75,7 +76,7 @@ login:
 - Start Evilginx
 
 ```shell
-sudo ./evilginx2/build/evilginx -p ./ --developer
+sudo ./evilginx2/build/evilginx -p ./ -developer
 ```
 
 - Set the domain and IP address:

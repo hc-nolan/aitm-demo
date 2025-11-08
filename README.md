@@ -24,6 +24,11 @@ sudo apt update && sudo apt install git curl
 curl https://get.docker.com | sh
 git clone https://github.com/hc-nolan/aitm-demo
 cd aitm-demo/web
+```
+
+Open the file `Caddyfile` in a text editor and change the first line to match your domain.
+
+```shell
 sudo docker compose up -d
 ```
 

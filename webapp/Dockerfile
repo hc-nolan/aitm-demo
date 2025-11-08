@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY main.py .
 
-RUN pip install --no-cache-dir fastapi uvicorn starlette itsdangerous python-multipart
+RUN pip install --no-cache-dir fastapi uvicorn starlette itsdangerous python-multipart pyotp qrcode pillow
 
 EXPOSE 8000
 

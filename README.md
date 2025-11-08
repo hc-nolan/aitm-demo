@@ -29,7 +29,8 @@ sudo docker compose up -d
 
 ## Attacker VM
 
-- Ensure git and Golang are installed: `sudo apt install -y git golang-go`
+- Ensure git, curl, and Golang are installed: `sudo apt install -y git curl golang-go`
+- Ensure Docker is installed: `curl https://get.docker.com | sh`
 - Run the following commands:
 
 ```shell

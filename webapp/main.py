@@ -16,72 +16,233 @@ USERS = {}
 
 CSS_STYLE = """
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
     body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        max-width: 500px;
-        margin: 50px auto;
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        min-height: 100vh;
         padding: 20px;
-        background-color: #f5f5f5;
     }
     .container {
+        max-width: 500px;
+        margin: 50px auto;
         background: white;
         padding: 40px;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     }
-    h1, h2 {
+    .logo {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .logo h1 {
+        color: #1e3c72;
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+    .logo p {
+        color: #666;
+        font-size: 14px;
+    }
+    h2 {
         color: #333;
-        margin-top: 0;
+        margin-bottom: 20px;
+        font-size: 24px;
     }
     input[type="text"], input[type="password"] {
         width: 100%;
-        padding: 12px;
-        margin: 8px 0;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        box-sizing: border-box;
-        font-size: 14px;
+        padding: 14px;
+        margin: 10px 0;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: border-color 0.3s;
+    }
+    input[type="text"]:focus, input[type="password"]:focus {
+        outline: none;
+        border-color: #1e3c72;
     }
     button {
         width: 100%;
-        padding: 12px;
-        background-color: #007bff;
+        padding: 14px;
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
         color: white;
         border: none;
-        border-radius: 4px;
+        border-radius: 8px;
         cursor: pointer;
         font-size: 16px;
-        margin-top: 10px;
+        font-weight: 600;
+        margin-top: 15px;
+        transition: transform 0.2s, box-shadow 0.2s;
     }
     button:hover {
-        background-color: #0056b3;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
     }
     a {
-        color: #007bff;
+        color: #1e3c72;
         text-decoration: none;
+        font-weight: 500;
     }
     a:hover {
         text-decoration: underline;
     }
     .error {
-        color: #dc3545;
+        background-color: #fee;
+        color: #c33;
+        padding: 12px;
+        border-radius: 8px;
         margin-bottom: 15px;
+        border-left: 4px solid #c33;
     }
     .info {
         color: #666;
         font-size: 14px;
         margin: 15px 0;
+        text-align: center;
     }
     .qr-container {
         text-align: center;
         margin: 20px 0;
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
     }
     .secret {
         background-color: #f8f9fa;
-        padding: 10px;
-        border-radius: 4px;
+        padding: 15px;
+        border-radius: 8px;
         font-family: monospace;
         word-break: break-all;
+        font-size: 13px;
+        border: 2px dashed #ddd;
+        margin: 15px 0;
+    }
+    .dashboard {
+        max-width: 900px;
+    }
+    .dashboard-header {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+    }
+    .dashboard-header h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+    .dashboard-header p {
+        opacity: 0.9;
+        font-size: 14px;
+    }
+    .account-card {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .account-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #f0f0f0;
+    }
+    .account-type {
+        color: #666;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .account-number {
+        color: #999;
+        font-size: 13px;
+        font-family: monospace;
+    }
+    .balance {
+        font-size: 36px;
+        font-weight: 700;
+        color: #1e3c72;
+        margin: 10px 0;
+    }
+    .balance-label {
+        color: #666;
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+    .transactions {
+        margin-top: 20px;
+    }
+    .transactions h3 {
+        color: #333;
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+    .transaction {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .transaction:last-child {
+        border-bottom: none;
+    }
+    .transaction-info {
+        flex: 1;
+    }
+    .transaction-name {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 3px;
+    }
+    .transaction-date {
+        font-size: 13px;
+        color: #999;
+    }
+    .transaction-amount {
+        font-weight: 700;
+        font-size: 16px;
+    }
+    .transaction-amount.positive {
+        color: #28a745;
+    }
+    .transaction-amount.negative {
+        color: #333;
+    }
+    .logout-btn {
+        background: white;
+        color: #1e3c72;
+        border: 2px solid #1e3c72;
+        margin-top: 20px;
+    }
+    .logout-btn:hover {
+        background: #f8f9fa;
+    }
+    .security-badge {
+        display: inline-flex;
+        align-items: center;
+        background: #e8f5e9;
+        color: #2e7d32;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+    .security-badge::before {
+        content: "🔒";
+        margin-right: 6px;
     }
 </style>
 """
@@ -95,18 +256,23 @@ async def login_page(request: Request):
     return f"""
     <html>
         <head>
-            <title>Login</title>
+            <title>SecureBank - Login</title>
             {CSS_STYLE}
         </head>
         <body>
             <div class="container">
-                <h2>Login</h2>
+                <div class="logo">
+                    <h1>🏦 SecureBank</h1>
+                    <p>Your trusted financial partner</p>
+                </div>
+                <h2>Account Login</h2>
                 <form method="post" action="/login">
                     <input type="text" name="username" placeholder="Username" required>
                     <input type="password" name="password" placeholder="Password" required>
-                    <button type="submit">Login</button>
+                    <button type="submit">Sign In</button>
                 </form>
-                <p class="info">Don't have an account? <a href='/register'>Register here</a></p>
+                <div class="security-badge">Two-Factor Authentication Protected</div>
+                <p class="info">Don't have an account? <a href='/register'>Open an account</a></p>
             </div>
         </body>
     </html>
@@ -118,18 +284,22 @@ async def register_page():
     return f"""
     <html>
         <head>
-            <title>Register</title>
+            <title>SecureBank - Open Account</title>
             {CSS_STYLE}
         </head>
         <body>
             <div class="container">
-                <h2>Register</h2>
+                <div class="logo">
+                    <h1>🏦 SecureBank</h1>
+                    <p>Your trusted financial partner</p>
+                </div>
+                <h2>Open New Account</h2>
                 <form method="post" action="/register">
-                    <input type="text" name="username" placeholder="Username" required>
-                    <input type="password" name="password" placeholder="Password" required>
-                    <button type="submit">Register</button>
+                    <input type="text" name="username" placeholder="Choose Username" required>
+                    <input type="password" name="password" placeholder="Choose Password" required>
+                    <button type="submit">Create Account</button>
                 </form>
-                <p class="info">Already have an account? <a href='/'>Login here</a></p>
+                <p class="info">Already have an account? <a href='/'>Sign in here</a></p>
             </div>
         </body>
     </html>
@@ -147,7 +317,7 @@ async def register(request: Request, username: str = Form(), password: str = For
             </head>
             <body>
                 <div class="container">
-                    <h2 class="error">Username already exists</h2>
+                    <div class="error">Username already exists. Please choose a different username.</div>
                     <a href='/register'>← Back to registration</a>
                 </div>
             </body>
@@ -171,7 +341,7 @@ async def setup_mfa(request: Request):
 
     totp_secret = USERS[username]["totp_secret"]
     totp_uri = pyotp.totp.TOTP(totp_secret).provisioning_uri(
-        name=username, issuer_name="Demo App"
+        name=username, issuer_name="SecureBank"
     )
 
     # Generate QR code
@@ -188,20 +358,23 @@ async def setup_mfa(request: Request):
     return f"""
     <html>
         <head>
-            <title>Setup MFA</title>
+            <title>Setup Two-Factor Authentication</title>
             {CSS_STYLE}
         </head>
         <body>
             <div class="container">
-                <h2>Setup Two-Factor Authentication</h2>
-                <p class="info">Scan this QR code with your authenticator app (Google Authenticator, Authy, etc.)</p>
+                <div class="logo">
+                    <h1>🏦 SecureBank</h1>
+                </div>
+                <h2>Secure Your Account</h2>
+                <p class="info">Scan this QR code with your authenticator app (Google Authenticator, Authy, Microsoft Authenticator, etc.)</p>
                 <div class="qr-container">
                     <img src="data:image/png;base64,{img_str}" alt="QR Code">
                 </div>
-                <p class="info">Or manually enter this secret:</p>
+                <p class="info">Or manually enter this secret key:</p>
                 <div class="secret">{totp_secret}</div>
                 <form method="post" action="/verify-mfa-setup">
-                    <input type="text" name="totp_code" placeholder="Enter 6-digit code" required maxlength="6">
+                    <input type="text" name="totp_code" placeholder="Enter 6-digit code" required maxlength="6" pattern="[0-9]{{6}}">
                     <button type="submit">Verify and Complete Setup</button>
                 </form>
             </div>
@@ -232,7 +405,7 @@ async def verify_mfa_setup(request: Request, totp_code: str = Form()):
         </head>
         <body>
             <div class="container">
-                <h2 class="error">Invalid code. Please try again.</h2>
+                <div class="error">Invalid verification code. Please try again.</div>
                 <a href='/setup-mfa'>← Back</a>
             </div>
         </body>
@@ -255,7 +428,7 @@ async def login(request: Request, username: str = Form(), password: str = Form()
         </head>
         <body>
             <div class="container">
-                <h2 class="error">Invalid credentials</h2>
+                <div class="error">Invalid username or password. Please try again.</div>
                 <a href='/'>← Back to login</a>
             </div>
         </body>
@@ -276,13 +449,16 @@ async def verify_mfa_page(request: Request):
         </head>
         <body>
             <div class="container">
-                <h2>Two-Factor Authentication</h2>
+                <div class="logo">
+                    <h1>🏦 SecureBank</h1>
+                </div>
+                <h2>Verify Your Identity</h2>
                 <p class="info">Enter the 6-digit code from your authenticator app</p>
                 <form method="post" action="/verify-mfa">
-                    <input type="text" name="totp_code" placeholder="Enter 6-digit code" required maxlength="6">
+                    <input type="text" name="totp_code" placeholder="Enter 6-digit code" required maxlength="6" pattern="[0-9]{{6}}" autofocus>
                     <button type="submit">Verify</button>
                 </form>
-                <p class="info"><a href='/'>← Cancel</a></p>
+                <p class="info"><a href='/logout'>← Cancel</a></p>
             </div>
         </body>
     </html>
@@ -311,7 +487,7 @@ async def verify_mfa(request: Request, totp_code: str = Form()):
         </head>
         <body>
             <div class="container">
-                <h2 class="error">Invalid code</h2>
+                <div class="error">Invalid verification code. Please try again.</div>
                 <a href='/verify-mfa'>← Try again</a>
             </div>
         </body>
@@ -328,14 +504,80 @@ async def home(request: Request):
     return f"""
     <html>
         <head>
-            <title>Home</title>
+            <title>SecureBank - Account Dashboard</title>
             {CSS_STYLE}
         </head>
         <body>
-            <div class="container">
-                <h1>Welcome, {user}!</h1>
-                <p class="info">You have successfully logged in with two-factor authentication.</p>
-                <a href='/logout'>Logout →</a>
+            <div class="container dashboard">
+                <div class="dashboard-header">
+                    <h1>Welcome back, {user}!</h1>
+                    <p>Last login: Today at 2:34 PM</p>
+                </div>
+
+                <div class="account-card">
+                    <div class="account-header">
+                        <div>
+                            <div class="account-type">Checking Account</div>
+                            <div class="account-number">****7892</div>
+                        </div>
+                    </div>
+                    <div class="balance-label">Available Balance</div>
+                    <div class="balance">$12,847.32</div>
+                </div>
+
+                <div class="account-card">
+                    <div class="account-header">
+                        <div>
+                            <div class="account-type">Savings Account</div>
+                            <div class="account-number">****4521</div>
+                        </div>
+                    </div>
+                    <div class="balance-label">Available Balance</div>
+                    <div class="balance">$45,293.67</div>
+                </div>
+
+                <div class="account-card">
+                    <div class="transactions">
+                        <h3>Recent Transactions</h3>
+                        <div class="transaction">
+                            <div class="transaction-info">
+                                <div class="transaction-name">Salary Deposit</div>
+                                <div class="transaction-date">Nov 5, 2025</div>
+                            </div>
+                            <div class="transaction-amount positive">+$4,250.00</div>
+                        </div>
+                        <div class="transaction">
+                            <div class="transaction-info">
+                                <div class="transaction-name">Rent Payment</div>
+                                <div class="transaction-date">Nov 1, 2025</div>
+                            </div>
+                            <div class="transaction-amount negative">-$1,850.00</div>
+                        </div>
+                        <div class="transaction">
+                            <div class="transaction-info">
+                                <div class="transaction-name">Grocery Store</div>
+                                <div class="transaction-date">Oct 30, 2025</div>
+                            </div>
+                            <div class="transaction-amount negative">-$127.48</div>
+                        </div>
+                        <div class="transaction">
+                            <div class="transaction-info">
+                                <div class="transaction-name">Electric Company</div>
+                                <div class="transaction-date">Oct 28, 2025</div>
+                            </div>
+                            <div class="transaction-amount negative">-$94.32</div>
+                        </div>
+                        <div class="transaction">
+                            <div class="transaction-info">
+                                <div class="transaction-name">Online Transfer</div>
+                                <div class="transaction-date">Oct 25, 2025</div>
+                            </div>
+                            <div class="transaction-amount positive">+$500.00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href='/logout'><button class="logout-btn">Sign Out</button></a>
             </div>
         </body>
     </html>

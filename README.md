@@ -26,7 +26,7 @@ git clone https://github.com/hc-nolan/aitm-demo
 cd aitm-demo/web
 ```
 
-Open the file `Caddyfile` in a text editor and change the first line to match your domain.
+Open the file `Caddyfile` in a text editor and change the first line to match your domain. Then, start the application:
 
 ```shell
 sudo docker compose up -d
@@ -108,20 +108,8 @@ sudo docker compose up -d
 
 - When this command finishes, you will have a simple webmail interface at `https://localhost:8080`
 - Now, send a phishing email to the victim (ourselves):
-
-```shell
-curl --url "smtp://localhost:8025" \
-  --mail-from "attacker@attacker.com" \
-  --mail-rcpt "victim@victim.com" \
-  --upload-file - <<'EOF'
-Subject: Test
-From: attacker@attacker.com
-To: victim@victim.com
-Date: $(date -R)
-
-phishing link here
-EOF
-```
+  - Open `mail/send_phish.sh` in a text editor and write your phishing email. Ensure you include the lure URL in the message
+  - Then run `./send_phish.sh`
 
 # Playing the victim
 

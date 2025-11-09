@@ -42,7 +42,7 @@ cd aitm-demo/attacker
 
 # Playing the victim
 
-Click the link in the email and log in as if you were the victim. Notice how there appears to be nothing unusual about the sign-in - it is identical to as if you were signing in directly to the application in a legitimate way.
+On the attacker VM, open the webmail UI: `http://web.mail:8080`. Click the link in the phishing email and log in as if you were the victim. Notice how there appears to be nothing unusual about the sign-in - it is identical to as if you were signing in directly to the application in a legitimate way.
 
 # Using the captured information
 

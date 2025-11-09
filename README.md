@@ -22,7 +22,7 @@ The web server hosts the website we are stealing the session and credentials fro
 ```shell
 sudo apt update && sudo apt install git
 git clone https://github.com/hc-nolan/aitm-demo
-cd aitm-demo/webapp
+cd aitm-demo/victim
 ./setup.sh
 ```
 

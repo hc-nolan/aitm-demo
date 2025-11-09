@@ -8,7 +8,17 @@ import io
 import base64
 
 app = FastAPI()
-app.add_middleware(SessionMiddleware, secret_key=secrets.token_hex(32))
+SESSION_COOKIE_DOMAIN = ".hnolan.com"
+
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=secrets.token_hex(32),
+    session_cookie="session",
+    max_age=3600,
+    same_site="lax",
+    https_only=False,
+    domain=SESSION_COOKIE_DOMAIN,
+)
 
 # In-memory storage: {username: {"password": str, "totp_secret": str}}
 USERS = {}

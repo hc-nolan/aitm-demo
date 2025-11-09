@@ -26,7 +26,11 @@ git clone https://github.com/hc-nolan/aitm-demo
 cd aitm-demo/webapp
 ```
 
-Open the file `Caddyfile` in a text editor and change the first line to match your domain. Then, start the application:
+Open the file `Caddyfile` in a text editor and change the first line to match your domain.
+
+Then, open `main.py` and edit the line `SESSION_COOKIE_DOMAIN = ".hnolan.com"` to match your domain.
+
+Finally, start the application:
 
 ```shell
 sudo docker compose up -d

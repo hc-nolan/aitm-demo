@@ -4,7 +4,7 @@ proxy_hosts:
 auth_urls:
   - '/home'
 auth_tokens:
-  - domain: '.demo.hnolan.com'
+  - domain: '.hnolan.com'
     keys: ['session']
     type: 'cookie'
     always: true

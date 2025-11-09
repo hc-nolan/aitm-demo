@@ -79,6 +79,7 @@ EOF
 phishing_url=$(echo "$output" | grep -E "https://${subdomain}\.${domain_phish}/[A-Za-z0-9]+" | tail -1)
 
 echo "Phishing URL: $phishing_url"
+sleep 10
 curl --url "smtp://localhost:8025" \
   --mail-from "attacker@attacker.com" \
   --mail-rcpt "victim@victim.com" \
